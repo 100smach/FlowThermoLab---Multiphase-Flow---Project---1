@@ -1,0 +1,44 @@
+FoamFile
+{
+    version 2.0;
+    format  ascii;
+    class   dictionary;
+    object  dynamicMeshDict;
+}
+
+dynamicFvMesh   dynamicMultiMotionSolverFvMesh;
+motionSolverLibs ("libfvMotionSolvers.so");
+
+dynamicMultiMotionSolverFvMeshCoeffs
+{
+    MRF_1
+    {
+        solver                  solidBody;
+        cellZone                fluid_mrf_1-1;
+
+        solidBodyMotionFunction rotatingMotion;
+        rotatingMotionCoeffs
+        {
+
+    origin    (0.0 0.0 0.08);
+    axis      (0 0 1);
+    omega     constant 12; //
+        }
+    }
+
+    MRF_2
+    {
+        solver                  solidBody;
+        cellZone                fluid_mrf_2-0;
+
+        solidBodyMotionFunction rotatingMotion;
+        rotatingMotionCoeffs
+        {
+    origin    (0.0 0.0 0.190);
+    axis      (0 0 1);
+omega constant 12; // 
+        }
+    }
+}
+
+

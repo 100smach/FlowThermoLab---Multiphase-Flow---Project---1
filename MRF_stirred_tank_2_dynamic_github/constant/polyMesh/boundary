@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2506                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+7
+(
+    ns-imp1-internal_SHADOW
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          1939;
+        startFace       1332501;
+        matchTolerance  0.001;
+        transform       noOrdering;
+        neighbourPatch  ns-imp1-internal;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    ns-imp2-internal_SHADOW
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          2590;
+        startFace       1334440;
+        matchTolerance  0.001;
+        transform       noOrdering;
+        neighbourPatch  ns-imp2-internal;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    wall_impeller_1
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          3844;
+        startFace       1337030;
+    }
+    wall_impeller_2
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          1578;
+        startFace       1340874;
+    }
+    ns-imp2-internal
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          2590;
+        startFace       1342452;
+        matchTolerance  0.001;
+        transform       noOrdering;
+        neighbourPatch  ns-imp2-internal_SHADOW;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    ns-imp1-internal
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          1939;
+        startFace       1345042;
+        matchTolerance  0.001;
+        transform       noOrdering;
+        neighbourPatch  ns-imp1-internal_SHADOW;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    all_wall
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          31344;
+        startFace       1346981;
+    }
+)
+
+// ************************************************************************* //

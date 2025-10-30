@@ -1,0 +1,38 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2506                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+pointSync false;
+
+patches
+(
+    {
+        name        all_wall;          // tek duvar adı (istediğin isim)
+        patchInfo
+        {
+            type    wall;          // yeni patch'in tipi
+        }
+        constructFrom patches;     // mevcut yamalardan oluştur
+        patches     (              // → BURAYA birleştirmek istediğin DUVAR patch'lerini yaz
+                 wall_baffle_1
+wall_sparger
+gas-inlet
+fluid-tank_body
+wall_shaft
+wall_liquid_level
+wall_shaft_14
+wall_shaft_13
+            // ... (senin boundary’de “type wall;” olanların tamamı)
+        );
+    }
+);
